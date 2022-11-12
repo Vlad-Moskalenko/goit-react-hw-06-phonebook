@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { ContactForm } from './ContactForm';
 import { Filter } from './Filter';
 import { ContactList } from './ContactList';
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 
 export function App() {
   // useEffect(() => {
