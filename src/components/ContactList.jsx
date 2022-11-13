@@ -10,12 +10,13 @@ export const ContactList = () => {
 
   return (
     <ol className="contacts-list">
-      {contacts.map(
-        ({ name, number }) =>
-          name.toLowerCase().includes(filter.status.toLowerCase()) && (
-            <ContactListItem key={nanoid()} name={name} number={number} />
-          )
-      )}
+      {contacts.length > 0 &&
+        contacts.map(
+          ({ name, number }) =>
+            name.toLowerCase().includes(filter.status.toLowerCase()) && (
+              <ContactListItem key={nanoid()} name={name} number={number} />
+            )
+        )}
     </ol>
   );
 };
