@@ -1,38 +1,29 @@
-import PropTypes from 'prop-types';
+import { Section } from './Section/Section';
+import { ContactForm } from './ContactForm/ContactForm';
+import { ContactsList } from './ContactsList/ContactsList';
+import { Filter } from './Filter/Filter';
 
-import { ContactForm } from './ContactForm';
-import { Filter } from './Filter';
-import { ContactList } from './ContactList';
-// import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { getContacts } from 'redux/contactsSlice';
 
-export function App() {
-  // useEffect(() => {
-  //   const contactsList = localStorage.getItem('contactsList');
-  //   if (contactsList) setContacts(JSON.parse(contactsList));
-  // }, []);
-
-  // useEffect(() => {
-  //   localStorage.setItem('contactsList', JSON.stringify(contacts));
-  // }, [contacts]);
+export const App = () => {
+  const contacts = useSelector(getContacts);
 
   return (
-    <div className="app-wrapper">
-      <h1>Phonebook</h1>
-      <ContactForm />
-      <h2>Contacts</h2>
-      <Filter />
-      <ContactList />
-    </div>
+    <main className="app-wrapper">
+      <Section title="Phonebook">
+        <ContactForm />
+      </Section>
+      <Section title="Contacts">
+        {contacts.length > 0 ? (
+          <>
+            <Filter />
+            <ContactsList />
+          </>
+        ) : (
+          <p>There are no contacts yet...</p>
+        )}
+      </Section>
+    </main>
   );
-}
-
-ContactList.propTypes = {
-  contacts: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string,
-      name: PropTypes.string,
-      number: PropTypes.string,
-    })
-  ),
-  filter: PropTypes.string,
 };
