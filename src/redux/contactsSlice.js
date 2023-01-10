@@ -10,10 +10,6 @@ const contactsSlice = createSlice({
   reducers: {
     addContact: {
       reducer({contacts}, { payload }){
-        const isUniqueContact = contacts.find(contact => contact.name.toLowerCase() === payload.name.toLowerCase())
-        if(isUniqueContact) {
-          return alert(`${payload.name} is already exist`);
-        }
         contacts.push(payload);
     },
       prepare({name, number}){
